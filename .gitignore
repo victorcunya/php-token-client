@@ -1,0 +1,8 @@
+/src/nbproject/private/
+/nbproject/private/
+
+### NetBeans
+nbproject/
+build.xml
+
+.idea

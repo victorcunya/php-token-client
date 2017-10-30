@@ -1,0 +1,20 @@
+{
+  "name": "alec892/php-token-client",
+  "description": "Token Service Client for PHP",
+  "license": "MIT",
+  "version": "dev-master",
+  "authors": [
+    {
+      "name": "Alexander Enriquez",
+      "email": "alec.892@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "TokenService\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">=5.5"
+  }
+}
