@@ -56,10 +56,18 @@ class BaseRestClient
 	 */
 	protected function post($uri, $data = [])
 	{
+		$dataJson = json_encode($data);
+		
+		$header =  [
+			'Content-Type: application/json',                                                                                
+			'Content-Length: ' . strlen($dataJson)      
+		];
+		
 		$this->init();
 		curl_setopt($this->curl, CURLOPT_URL, $uri);  
         curl_setopt($this->curl, CURLOPT_POST, true);  
-        curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($data)); 
+        curl_setopt($this->curl, CURLOPT_POSTFIELDS, $dataJson); 
+		curl_setopt($this->curl, CURLOPT_HTTPHEADER, $header);
 		$response = curl_exec($this->curl);
 		
 		if ($response === false || empty($response)) {
