@@ -36,14 +36,18 @@ class BaseRestClient
 		$this->init();
 		curl_setopt($this->curl, CURLOPT_URL, $uri);
         curl_setopt($this->curl, CURLOPT_POST, false);
-		$response = curl_exec($this->curl);
+		$responseBody = curl_exec($this->curl);
 		
-		if ($response === false || empty($response)) {
+		if ($responseBody === false || empty($responseBody)) {
 			throw new \Exception('Error in cURL request'. curl_error($this->curl));
 		}
 		
+		$responseCode = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 		$this->close();
-		return json_decode($response, true);
+		return [
+			'responseCode' => $responseCode,
+			'responseBody' => json_decode($responseBody, true),
+		];
 	}
 	
 	/**
@@ -68,14 +72,19 @@ class BaseRestClient
         curl_setopt($this->curl, CURLOPT_POST, true);  
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, $dataJson); 
 		curl_setopt($this->curl, CURLOPT_HTTPHEADER, $header);
-		$response = curl_exec($this->curl);
+		$responseBody = curl_exec($this->curl);
 		
-		if ($response === false || empty($response)) {
+		if ($responseBody === false || empty($responseBody)) {
 			throw new \Exception('Error in cURL request'. curl_error($this->curl));
 		}
 		
+		$responseCode = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 		$this->close();
-		return json_decode($response, true);
+		
+		return [
+			'responseCode' => $responseCode,
+			'responseBody' => json_decode($responseBody, true),
+		];
 	}
 	
 	/**
