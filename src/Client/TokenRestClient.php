@@ -2,18 +2,15 @@
 
 namespace TokenService\Client;
 
-use TokenService\Client\BaseRestClient;
 
 class TokenRestClient extends BaseRestClient
 {
 	/**
-	 *
 	 * @var string
 	 */
 	private $uri;
 		
 	/**
-	 * 
 	 * @param string $uri
 	 */
 	public function __construct($uri) 
@@ -22,7 +19,6 @@ class TokenRestClient extends BaseRestClient
 	}
 	
 	/**
-	 * 
 	 * @param array $data
 	 * @return array
 	 */
@@ -32,8 +28,6 @@ class TokenRestClient extends BaseRestClient
 	}
 	
 	/**
-	 * 
-	 * @param string $token
 	 * @return array
 	 */
 	public function verifyToken()
